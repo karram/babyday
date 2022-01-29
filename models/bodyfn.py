@@ -3,11 +3,9 @@ from typing import List, Optional
 from datetime import datetime
 
 
-class Meal(BaseModel):
+class BodyFn(BaseModel):
     item: str
     description = ""
-    quantity: int
-    uom: str
     event_time: Optional[datetime] = None
 
     class Config:

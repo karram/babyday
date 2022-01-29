@@ -4,8 +4,10 @@ import sqlalchemy.orm as orm
 from data.modelbase import SqlAlchemyBase
 from data.meals import Meal
 from data.bodyfn import BodyFunction
+from dataclasses import dataclass
 
 
+@dataclass
 class Person(SqlAlchemyBase):
     __tablename__ = "persons"
 

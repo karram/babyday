@@ -2,10 +2,12 @@ import flask
 import os
 import data.db_session as db_session
 from apis import meal
+from apis import bodyfn
 
 
 app = flask.Flask(__name__)
 app.register_blueprint(meal.blueprint)
+app.register_blueprint(bodyfn.blueprint)
 
 def main():
     db_init()

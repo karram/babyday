@@ -2,8 +2,10 @@ import datetime
 import sqlalchemy as sa
 from data.modelbase import SqlAlchemyBase
 import sqlalchemy.orm as orm
+from dataclasses import dataclass
 
 
+@dataclass
 class Meal(SqlAlchemyBase):
     __tablename__ = "meals"
 

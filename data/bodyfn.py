@@ -2,8 +2,10 @@ import datetime
 import sqlalchemy as sa
 import sqlalchemy.orm as orm
 from data.modelbase import SqlAlchemyBase
+from dataclasses import dataclass
 
 
+@dataclass
 class BodyFunction(SqlAlchemyBase):
     __tablename__ = "bodyfunctions"
 
