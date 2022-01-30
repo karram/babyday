@@ -1,13 +1,13 @@
 import datetime
 
-import data.db_session
-from models.person import Person
-from models.meal import Meal
-from models.bodyfn import BodyFn
+import babyday.data.db_session
+from babyday.models.person import Person
+from babyday.models.meal import Meal
+from babyday.models.bodyfn import BodyFn
 from sqlalchemy.orm import Session
-from data.person import Person as DbPerson
-from data.meals import Meal as DbMeal
-from data.bodyfn import BodyFunction as DbBodyFn
+from babyday.data.person import Person as DbPerson
+from babyday.data.meals import Meal as DbMeal
+from babyday.data.bodyfn import BodyFunction as DbBodyFn
 
 
 def add_meal(p: Person, m: Meal):

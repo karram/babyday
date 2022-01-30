@@ -1,7 +1,7 @@
 import datetime
 import sqlalchemy as sa
 import sqlalchemy.orm as orm
-from data.modelbase import SqlAlchemyBase
+from babyday.data.modelbase import SqlAlchemyBase
 from dataclasses import dataclass
 
 

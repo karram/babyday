@@ -3,6 +3,7 @@ import functools
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
+import babyday.service.user_service as user_service
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -22,10 +23,12 @@ def register():
             error = 'Password is required.'
 
         if error is None:
+            #user_service.add_user(username, generate_password_hash(password))
             try:
-                pass # TODO: Add user to db
-            except db.IntegrityError:
-                error = f"User {username} is already registered."
+                user_service.add_user(username, generate_password_hash(password))
+            except Exception as ex:
+                #error = f"User {username} is already registered."
+                raise Exception(ex)
             else:
                 return redirect(url_for("auth.login"))
 

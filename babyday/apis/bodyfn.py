@@ -1,9 +1,9 @@
 import json
 
 import flask
-from models.person import Person
-from models.bodyfn import BodyFn
-from service import person_service
+from babyday.models.person import Person
+from babyday.models.bodyfn import BodyFn
+from babyday.service import person_service
 from pydantic import ValidationError
 from sqlalchemy.exc import SQLAlchemyError
 from flask import request, jsonify

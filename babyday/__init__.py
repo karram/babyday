@@ -1,16 +1,17 @@
 import os
 from flask import Flask
+from babyday.data.db_session import global_init
 
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     print(f"Instance path = {app.instance_path}")
-    db_path = os.path.join(app.instance_path, "..", 'db', 'bbdy.sqlite')
+    db_path = os.path.join(app.instance_path, 'db', 'bbdy.sqlite')
     print(f"DB path = {db_path}")
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, "..", 'db', 'bbdy.sqlite'),
+        DATABASE=os.path.join(app.instance_path, 'db', 'bbdy.sqlite'),
     )
 
     if test_config is None:
@@ -34,4 +35,5 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+    global_init(db_path)
     return app

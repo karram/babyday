@@ -1,10 +1,10 @@
 import json
 
 import flask
-from models.meal import Meal
-from models.person import Person
-from models.mealentry import MealEntry
-from service import person_service
+from babyday.models.meal import Meal
+from babyday.models.person import Person
+from babyday.models.mealentry import MealEntry
+from babyday.service import person_service
 from pydantic import ValidationError
 from sqlalchemy.exc import SQLAlchemyError
 from flask import request, jsonify
