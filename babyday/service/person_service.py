@@ -1,6 +1,6 @@
 import datetime
 
-import babyday.data.db_session
+import babyday.data.db_session as db_session
 from babyday.models.person import Person
 from babyday.models.meal import Meal
 from babyday.models.bodyfn import BodyFn
@@ -12,7 +12,7 @@ from babyday.data.bodyfn import BodyFunction as DbBodyFn
 
 def add_meal(p: Person, m: Meal):
     meal = None
-    with data.db_session.SessionContext(commit_on_success=True) as ctx:
+    with db_session.SessionContext(commit_on_success=True) as ctx:
         # find person
         person = ctx.session.query(DbPerson).filter(DbPerson.id == p.id).first()
         if not person:
@@ -27,7 +27,7 @@ def add_meal(p: Person, m: Meal):
 
 def get_meals(p: Person):
     meals = None
-    with data.db_session.SessionContext(commit_on_success=True) as ctx:
+    with db_session.SessionContext(commit_on_success=True) as ctx:
         # find person
         person = ctx.session.query(DbPerson).filter(DbPerson.id == p.id).first()
         if not person:
@@ -47,7 +47,7 @@ def get_meals(p: Person):
 
 def add_bodyfn(p: Person, b: BodyFn):
     bodyfn = None
-    with data.db_session.SessionContext(commit_on_success=True) as ctx:
+    with db_session.SessionContext(commit_on_success=True) as ctx:
         # find person
         person = ctx.session.query(DbPerson).filter(DbPerson.id == p.id).first()
         if not person:
@@ -61,7 +61,7 @@ def add_bodyfn(p: Person, b: BodyFn):
 
 def get_bodyfns(p: Person):
     bodyfns = None
-    with data.db_session.SessionContext(commit_on_success=True) as ctx:
+    with db_session.SessionContext(commit_on_success=True) as ctx:
         # find person
         person = ctx.session.query(DbPerson).filter(DbPerson.id == p.id).first()
         if not person:
