@@ -21,3 +21,5 @@ class Meal(SqlAlchemyBase):
     person_id = sa.Column(sa.String, sa.ForeignKey("persons.id"))
     person = orm.relation("Person", back_populates="meals")
 
+    account_id = sa.Column(sa.Integer, sa.ForeignKey("accounts.id"))
+

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Meal{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="person">Person</label>
+    <input name="person" id="person" required>
+    <label for="item">Item</label>
+    <input name="item" id="item" required>
+    <label for="quantity">Quantity</label>
+    <input name="quantity" id="quantity" required>
+    <label for="uom">Units</label>
+    <input name="uom" id="uom" required>
+    <label for="event_time">Time</label>
+    <input name="event_time" id="event_time" required>
+    <input type="submit" value="Add Meal Entry">
+  </form>
+{% endblock %}

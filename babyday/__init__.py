@@ -32,8 +32,15 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
-    from . import auth
+    from babyday.views import auth
     app.register_blueprint(auth.bp)
+
+    from babyday.views import mainpage
+    app.register_blueprint(mainpage.bp)
+    app.add_url_rule('/', endpoint='index')
+
+    from babyday.views import eat
+    app.register_blueprint(eat.bp)
 
     global_init(db_path)
     return app

@@ -18,6 +18,8 @@ class Person(SqlAlchemyBase):
     date_of_birth = sa.Column(sa.Date, nullable=True)
 
     # Relationships
+    account_id = sa.Column(sa.Integer, sa.ForeignKey("accounts.id"))
+
     meals = orm.relation("Meal", order_by=[
         Meal.event_time
     ], back_populates="person")

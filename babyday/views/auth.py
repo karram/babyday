@@ -23,9 +23,11 @@ def register():
             error = 'Password is required.'
 
         if error is None:
-            #user_service.add_user(username, generate_password_hash(password))
             try:
-                user_service.add_user(username, generate_password_hash(password))
+                user = user_service.add_user(username, generate_password_hash(password))
+                session.clear()
+                session['user_id'] = user['id']
+                return redirect(url_for('index'))
             except Exception as ex:
                 #error = f"User {username} is already registered."
                 raise Exception(ex)
@@ -43,7 +45,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         error = None
-        user = None #TODO: Get user from DB
+        user = user_service.get_user(username)
 
         if user is None:
             error = 'Incorrect username.'
@@ -67,13 +69,13 @@ def load_logged_in_user():
     if user_id is None:
         g.user = None
     else:
-        g.user = None #TODO: Get user from DB using user_id
+        g.user = user_service.get_user(user_id)
 
 
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('auth.login'))
 
 
 def login_required(view):

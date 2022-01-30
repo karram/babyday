@@ -19,3 +19,5 @@ class BodyFunction(SqlAlchemyBase):
     person_id = sa.Column(sa.Integer, sa.ForeignKey("persons.id"))
     person = orm.relation("Person", back_populates="bodyfunctions")
 
+    account_id = sa.Column(sa.Integer, sa.ForeignKey("accounts.id"))
+

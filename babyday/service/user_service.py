@@ -6,8 +6,7 @@ from babyday.data.account_user import User
 
 
 def add_user(username: str, password: str):
-    print(f"username={username}, password={password}")
-
+    userobj = None
     with db_session.SessionContext(commit_on_success=True) as ctx:
         # # Check if user already exists. If so, return error
         user = ctx.session.query(User).filter(User.id == username).first()
@@ -20,7 +19,21 @@ def add_user(username: str, password: str):
         ctx.session.add(account)
         user = User(id=username, password=password)
         account.users.append(user)
+        userobj = {"id": user.id,
+                   "username": user.id,
+                   "password": user.password}
     # return status
-    return user
+    return userobj
 
+
+def get_user(username: str):
+    userobj = None
+    with db_session.SessionContext(commit_on_success=True) as ctx:
+        # # Check if user exists in db
+        user = ctx.session.query(User).filter(User.id == username).first()
+        if user:
+            userobj = {"id": user.id,
+                       "username": user.id,
+                       "password": user.password}
+    return userobj
 

@@ -1,8 +1,7 @@
 import flask
 import os
 import babyday.data.db_session as db_session
-from babyday import auth
-
+from babyday.views import auth
 
 app = flask.Flask(__name__, instance_relative_config=True)
 app.config.from_mapping(
