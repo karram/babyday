@@ -16,7 +16,6 @@ bp = Blueprint('eat', __name__, url_prefix='/person')
 @bp.route('/eat', methods=('GET', 'POST'))
 @login_required
 def new_meal():
-
     if request.method == "POST":
         error = None
         try:
@@ -25,18 +24,23 @@ def new_meal():
             quantity = request.form['quantity']
             uom = request.form['uom']
             event_time = request.form['event_time']
+            account_id = session['account_id']
+            print(account_id)
 
-            meal = Meal(item=item, quantity=quantity, uom=uom, event_time=event_time)
-            person = Person(id=person)
+            meal = Meal(item=item, quantity=quantity, uom=uom, event_time=event_time, account_id=account_id)
+            person = Person(id=person, account_id=account_id)
             db_meal_entry = person_service.add_meal(person, meal)
             flash(f"Added entry: {db_meal_entry.id}")
 
         except ValidationError as ve:
             error = {"Validation error": str(ve).replace("\n", " ")}
+            #raise
         except SQLAlchemyError as se:
             error = {"DB Row error": str(se).replace("\n", " ")}
+            #raise
         except Exception as x:
             error = {"Generic error": str(x).replace("\n", " ")}
+            #raise
 
         if error:
             flash(error)

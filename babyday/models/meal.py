@@ -9,6 +9,7 @@ class Meal(BaseModel):
     quantity: int
     uom: str
     event_time: Optional[datetime] = None
+    account_id: str
 
     class Config:
         anystr_strip_whitespace = True

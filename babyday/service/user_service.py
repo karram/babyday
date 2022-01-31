@@ -19,9 +19,7 @@ def add_user(username: str, password: str):
         ctx.session.add(account)
         user = User(id=username, password=password)
         account.users.append(user)
-        userobj = {"id": user.id,
-                   "username": user.id,
-                   "password": user.password}
+        userobj = create_session_user(user)
     # return status
     return userobj
 
@@ -32,8 +30,14 @@ def get_user(username: str):
         # # Check if user exists in db
         user = ctx.session.query(User).filter(User.id == username).first()
         if user:
-            userobj = {"id": user.id,
-                       "username": user.id,
-                       "password": user.password}
+            userobj = create_session_user(user)
     return userobj
 
+
+def create_session_user(user: User):
+    if user:
+        return {"id": user.id,
+                "username": user.id,
+                "password": user.password,
+                "account_id": user.account_id}
+    return None

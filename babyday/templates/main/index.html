@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Eat, Poo, Sleep{% endblock %}</h1>
-  {% if g.user %}
-    <h2> Menu tabs placeholder</h2>
-  {% endif %}
+  
 {% endblock %}
 
 {% block content %}
-    <h2> Eat </h2>
+    <ul>
+    <li><a href="{{ url_for('eat.new_meal')}}">Eat</a>
     <h2> Poo </h2>
     <h2> Sleep </h2>
+    </ul>
 {% endblock %}

@@ -8,6 +8,7 @@ class Person(BaseModel):
     firstname: Optional[str]
     lastname: Optional[str]
     dob: Optional[datetime.datetime]
+    account_id: str
 
     class Config:
         anystr_strip_whitespace = True

@@ -14,12 +14,14 @@ def add_meal(p: Person, m: Meal):
     meal = None
     with db_session.SessionContext(commit_on_success=True) as ctx:
         # find person
-        person = ctx.session.query(DbPerson).filter(DbPerson.id == p.id).first()
+        person = ctx.session.query(DbPerson)\
+            .filter(DbPerson.id == p.id, DbPerson.account_id == p.account_id).first()
         if not person:
-            raise Exception("User not found")
+            raise Exception(f"Person {p.id} does not exist.")
         # add meal
         meal = DbMeal(item=m.item, quantity=m.quantity, uom=m.uom,
-                      event_time=m.event_time, description=m.description)
+                      event_time=m.event_time, description=m.description,
+                      account_id=m.account_id)
         person.meals.append(meal)
     # return status
     return meal
