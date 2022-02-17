@@ -1,13 +1,16 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  
+
 {% endblock %}
 
 {% block content %}
     <ul>
-    <li><a href="{{ url_for('eat.new_meal')}}">Eat</a>
-    <h2> Poo </h2>
-    <h2> Sleep </h2>
+    <li><a href="{{ url_for('eat.new_meal')}}">
+        <img src="{{ url_for('static', filename='milk-bottle.png')}}" width="64" height="64"></a>
+    <li><a href="{{ url_for('index')}}">
+        <img src="{{ url_for('static', filename='diaper-grey.png')}}" width="64" height="64"></a>
+    <li><a href="{{ url_for('index')}}">
+        <img src="{{ url_for('static', filename='sleeping-baby.png')}}" width="64" height="64"></a>
     </ul>
 {% endblock %}
