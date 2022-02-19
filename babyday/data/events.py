@@ -11,15 +11,13 @@ class Event(SqlAlchemyBase):
 
     id = sa.Column(sa.Integer, autoincrement=True, primary_key=True)
     created_at = sa.Column(sa.DateTime, default=datetime.datetime.now)
-    item = sa.Column(sa.String, index=True)
     description = sa.Column(sa.String, nullable=True)
     quantity = sa.Column(sa.Integer, nullable=True)
-    uom = sa.Column(sa.String)
-    event_time = sa.Column(sa.DateTime, nullable=True)
+    event_time = sa.Column(sa.DateTime, nullable=True, default=datetime.datetime.now)
 
     # Relationships
     event_id = sa.Column(sa.String, sa.ForeignKey("eventtypes.id"))
-    event_type = orm.relation("EventType", back_populates="events")
+    event_type = orm.relation("EventType")
 
     person_id = sa.Column(sa.String, sa.ForeignKey("persons.id"))
     person = orm.relation("Person", back_populates="events")

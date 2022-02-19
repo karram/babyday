@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Event{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="person">Person</label>
+    <input name="person" id="person" required>
+    <label for="event">Event</label>
+    <input name="event" id="event" required>
+    <label for="event_time">Time</label>
+    <input name="event_time" id="event_time" required>
+    <label for="quantity">How much?</label>
+    <input name="quantity" id="quantity" required>
+    <input type="submit" value="Add Event">
+  </form>
+{% endblock %}

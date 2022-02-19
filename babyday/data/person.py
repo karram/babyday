@@ -2,8 +2,7 @@ import datetime
 import sqlalchemy as sa
 import sqlalchemy.orm as orm
 from babyday.data.modelbase import SqlAlchemyBase
-from babyday.data.meals import Meal
-from babyday.data.bodyfn import BodyFunction
+from babyday.data.events import Event
 from dataclasses import dataclass
 
 
@@ -20,11 +19,7 @@ class Person(SqlAlchemyBase):
     # Relationships
     account_id = sa.Column(sa.Integer, sa.ForeignKey("accounts.id"))
 
-    meals = orm.relation("Meal", order_by=[
-        Meal.event_time
-    ], back_populates="person")
-
-    bodyfunctions = orm.relation("BodyFunction", order_by=[
-        BodyFunction.event_time
+    events = orm.relation("Event", order_by=[
+        Event.event_time
     ], back_populates="person")
 

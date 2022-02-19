@@ -1,16 +1,36 @@
 {% extends 'base.html' %}
 
 {% block header %}
-
+<nav>
+  <ul class="horizontal">
+    <li>New Event</li>
+    <li><a href="{{url_for('event.get_full_log')}}"">View Log</a></li>
+    <li><a href="#">Manage</a></li>
+  </ul>
+</nav>
 {% endblock %}
 
 {% block content %}
-    <ul>
-    <li><a href="{{ url_for('eat.new_meal')}}">
-        <img src="{{ url_for('static', filename='milk-bottle.png')}}" width="64" height="64"></a>
-    <li><a href="{{ url_for('index')}}">
-        <img src="{{ url_for('static', filename='diaper-grey.png')}}" width="64" height="64"></a>
-    <li><a href="{{ url_for('index')}}">
-        <img src="{{ url_for('static', filename='sleeping-baby.png')}}" width="64" height="64"></a>
-    </ul>
+  <form method="post">
+    <label for="person">Person</label>
+    <select name="person" id="person">
+      {% for person in persons %}
+      <option value="{{person.id}}">{{person.firstname}}</option>
+      {% endfor %}
+    </select>
+
+    <label for="event">Event</label>
+    <select name="event" id="event">
+      {% for event_type in event_types %}
+      <option value="{{event_type.id}}">{{event_type.name}}</option>
+      {% endfor %}
+    </select>
+    <label for="event_time">Time</label>
+    <input name="event_time" id="event_time" type="datetime-local">
+    <label for="quantity">How much?</label>
+    <input name="quantity" id="quantity">
+    <label for="description">Notes</label>
+    <input name="description" id="description">
+    <input type="submit" value="Add Event">
+  </form>
 {% endblock %}

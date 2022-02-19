@@ -39,8 +39,8 @@ def create_app(test_config=None):
     app.register_blueprint(mainpage.bp)
     app.add_url_rule('/', endpoint='index')
 
-    from babyday.views import eat
-    app.register_blueprint(eat.bp)
-
+    from babyday.views import event_log
+    app.register_blueprint(event_log.bp)
+    
     global_init(db_path)
     return app

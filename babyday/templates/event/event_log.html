@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<nav>
+  <ul class="horizontal">
+    <li><a href="{{ url_for('index')}}">New Event</a></li>
+    <li>View Log</li>
+    <li><a href="#">Manage</a></li>
+  </ul>
+</nav>
+{% endblock %}
+
+{% block content %}
+  <table>
+    <caption></caption>
+    <thead>
+      <tr>
+        <th>Who</th>
+        <th>What</th>
+        <th>When</th>
+        <th>How Much</th>
+        <th>Notes</th>
+    </tr>
+    </thead>
+    <tbody>
+      {% for event in events %}
+        <tr>
+            <td>{{event.person.firstname}}</td>
+            <td>{{event.event_type.name}}</td>
+            <td>{{event.event_time}}</td>
+            <td>{{event.quantity}}</td>
+            <td>{{event.description}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>  
+  </table>
+      
+  
+{% endblock %}
